@@ -1,0 +1,431 @@
+/* ============================================
+   GENERAL RESET
+   ============================================ */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin-block-end: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Utility to ensure images fill their allocated box without distortion */
+.object-cover {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/* ============================================
+   GENERAL STYLES -  These styles apply throughout the entire project
+   ============================================ */
+
+:root {
+  --brown: #7c6a46;
+  --white: #ffff;
+  --text-main: #2e2e2e;
+  --text-light-grey: #808080;
+  --font-family-primary: "Poppins", sans-serif;
+  --font-family-secondary: "Mulish", sans-serif;
+  --font-family-cursive: "Dancing Script", cursive;
+  --font-family-footer: "Raleway", sans-serif;
+  --hover-orange: rgb(198, 131, 37);
+  --hover-dark-brown: #625132;
+  --border-line: #1c1c1c;
+  --label: #4d4d4d;
+}
+
+body {
+  background-color: var(--white);
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-primary);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 1270px;
+  padding: 0 20px;
+}
+
+header,
+footer {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.page-spacing-top {
+  margin-top: 48px;
+}
+
+.page-spacing-bottom {
+  margin-bottom: 48px;
+}
+
+.page {
+  display: none;
+  animation: fade 0.35s ease;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   HEADER + NAVIGATION
+   ============================================ */
+
+.header {
+  height: 120px;
+  padding: 0 24px 0 24px;
+  background: var(--white);
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.logo {
+  width: 55px;
+  height: auto;
+}
+
+/* nav  */
+.nav-state {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 500;
+  width: 450px;
+}
+
+nav label {
+  cursor: pointer;
+  color: var(--text-main);
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+nav label:hover {
+  color: var(--hover-orange);
+}
+
+#nav-home:checked ~ main #page-home,
+#nav-catalog:checked ~ main #page-catalog,
+#nav-contacts:checked ~ main #page-contacts {
+  display: block;
+}
+
+#nav-home:checked ~ header label[for="nav-home"],
+#nav-catalog:checked ~ header label[for="nav-catalog"],
+#nav-contacts:checked ~ header label[for="nav-contacts"] {
+  color: var(--brown);
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  position: relative;
+}
+
+.hero-img,
+.contacts-img {
+  width: 100%;
+  max-height: 700px;
+  display: block;
+  object-fit: cover;
+}
+
+.hero-cta,
+.contacts-cta {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  text-align: center;
+  font-family: var(--font-family-secondary);
+  gap: 48px;
+}
+
+.hero-cta > h1 {
+  font-size: 60px;
+  font-weight: 700;
+}
+
+.hero-cta > p {
+  font-weight: 600;
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.hero-cta > a {
+  padding: 16px 46px;
+  background-color: var(--brown);
+  border-radius: 5px;
+  text-decoration: none;
+  color: var(--white);
+  border-bottom: 2px solid var(--white);
+  border-right: 2px solid var(--white);
+  border-top: 2px solid var(--brown);
+  border-left: 2px solid var(--brown);
+  transition-duration: 1s;
+  transition-property: all;
+}
+
+.hero-cta > a:hover {
+  cursor: pointer;
+  border-top: 2px solid var(--white);
+  border-left: 2px solid var(--white);
+  box-shadow: 0 8px 16px 0 rgba(207, 163, 105, 0.6);
+  transform: scale(1.05);
+}
+
+/* ============================================
+  FOOTER
+   ============================================ */
+
+.footer {
+  background-color: var(--brown);
+  text-align: center;
+  padding: 80px 0 50px;
+  color: var(--white);
+  font-family: var(--font-family-footer);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 74px;
+}
+
+.footer-review {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  max-width: 277px;
+  text-align: left;
+}
+
+.footer-review > h3 {
+  font-weight: 700;
+  font-size: 30px;
+  font-family: var(--font-family-cursive);
+}
+
+.footer-review > p {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.footer-links > h3,
+.footer-subscribe > h3 {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.links-wrapper,
+.footer-subscribe > p {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.links-wrapper a {
+  text-decoration: none;
+}
+
+.footer-subscribe {
+  max-width: 360px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.form-box {
+  border-radius: 5px;
+  background-color: var(--white);
+  display: flex;
+  align-items: stretch;
+  padding: 4px;
+  justify-content: space-between;
+}
+
+.form-box input {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 14px;
+}
+
+.form-box input::placeholder {
+  font-size: 12px;
+  color: var(--text-light-grey);
+}
+
+.form-box button {
+  color: var(--white);
+  background-color: var(--brown);
+  padding: 12px 25px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.form-box button:hover {
+  background-color: var(--hover-dark-brown);
+}
+
+.divider {
+  border-top: 1px solid var(--white);
+}
+
+.footer-year {
+  padding-top: 50px;
+  font-weight: 600;
+  font-size: 15px;
+}
