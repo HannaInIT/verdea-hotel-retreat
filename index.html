@@ -272,7 +272,11 @@
                 </div>
 
                 <div class="catalog-form-group">
-                  <button type="button" class="catalog-guests-toggle-button" id="guestsToggle">
+                  <button
+                    type="button"
+                    class="catalog-guests-toggle-button"
+                    id="guestsToggle"
+                  >
                     <span id="guestsSummary">2 adults, 0 children, 1 room</span>
                     <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
                       <path
@@ -295,7 +299,9 @@
                         >
                           -
                         </button>
-                        <span class="catalog-counter-value" id="roomsValue">1</span>
+                        <span class="catalog-counter-value" id="roomsValue"
+                          >1</span
+                        >
 
                         <button
                           type="button"
@@ -319,7 +325,9 @@
                           >
                             -
                           </button>
-                          <span class="catalog-counter-value" id="adultsValue">2</span>
+                          <span class="catalog-counter-value" id="adultsValue"
+                            >2</span
+                          >
                           <button
                             type="button"
                             class="catalog-counter-btn plus"
@@ -440,7 +448,11 @@
       <!-- CONTACTS  -->
       <section id="page-contacts" class="page">
         <div class="contacts">
-          <img src="images/contact.png" class="contacts-img" alt="hero" />
+          <img
+            src="images/contact.png"
+            class="contacts-img"
+            alt="contacts-img"
+          />
           <div class="contacts-cta">
             <h2>Contact us</h2>
             <p>
@@ -454,7 +466,10 @@
         <div class="contacts-info wrapper page-spacing-top">
           <p>Tom Schreursweg 40, 1067 MC Amsterdam</p>
 
-          <a href="#" class="view-map"
+          <a
+            href="https://www.google.com/maps?ll=52.381719,4.778921&z=16&t=m&hl=en&gl=NL&mapclient=embed&cid=7062355396805945764"
+            class="view-map"
+            target="_blank"
             >View map
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -482,18 +497,23 @@
           <form action="#" method="post" autocomplete="on">
             <div class="contacts-form-input-wrapper">
               <div class="contacts-form-group">
-                <label for="username">Full name</label>
+                <label for="username"
+                  >Full name <span class="required">*</span></label
+                >
                 <input
                   type="text"
                   id="username"
                   name="username"
                   required
                   placeholder="e.g John Becker"
-                  autocomplete="username"
+                  autocomplete="off"
+                  required
                 />
               </div>
               <div class="contacts-form-group">
-                <label for="user-email">Email</label>
+                <label for="user-email"
+                  >Email <span class="required">*</span></label
+                >
                 <input
                   type="email"
                   id="user-email"
@@ -501,18 +521,81 @@
                   required
                   placeholder="johnbecker@gmail.com"
                   autocomplete="email"
+                  required
                 />
               </div>
             </div>
 
+            <div class="contacts-form-input-wrapper">
+              <div class="contacts-form-group">
+                <label for="phone">Phone number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  placeholder="+31612345678"
+                  autocomplete="phone"
+                  class="contacts-phone-input"
+                />
+              </div>
+
+              <div class="contacts-form-group">
+                <label for="reason"
+                  >How we can help you? <span class="required">*</span></label
+                >
+                <div class="contacts-select-wrapper">
+                  <select
+                    id="reason"
+                    name="reason"
+                    class="select-reason"
+                    required
+                  >
+                    <option value="" disabled selected>Select a reason</option>
+                    <option value="booking">
+                      New reservation / Booking question
+                    </option>
+                    <option value="modify">
+                      Modify or cancel a reservation
+                    </option>
+                    <option value="refund">Refund or payment issue</option>
+                    <option value="stay">
+                      Question about my upcoming stay
+                    </option>
+                    <option value="feedback">Feedback or complaint</option>
+                    <option value="group">Group or event booking</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <svg
+                    class="contacts-select-arrow"
+                    width="12"
+                    height="8"
+                    viewBox="0 0 12 8"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1L6 6L11 1"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
             <div class="contacts-form-group">
-              <label for="message">Message</label>
+              <label for="message"
+                >Message <span class="required">*</span></label
+              >
               <textarea
                 name="message"
                 id="message"
-                class="form-textarea"
+                class="contacts-form-textarea"
                 rows="4"
-                placeholder="message"
+                placeholder="Type your message here..."
+                required
               ></textarea>
             </div>
             <button type="submit" class="contacts-form-button">Submit</button>
