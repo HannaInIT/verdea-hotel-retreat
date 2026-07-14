@@ -60,7 +60,7 @@ if (toggle && dropdown && summary) {
     btn.addEventListener("click", () => {
       const target = btn.dataset.target;
       const isPlus = btn.classList.contains("plus");
-      const min = target === "adults" ? 1 : 0;
+      const min = target === "children" ? 0 : 1;
 
       if (isPlus) counts[target]++;
       else if (counts[target] > min) counts[target]--;
@@ -74,3 +74,51 @@ if (toggle && dropdown && summary) {
     summary.textContent = `${counts.adults} adults, ${counts.children} children, ${counts.rooms} room${counts.rooms > 1 ? "s" : ""}`;
   }
 }
+
+/* ============================================
+   RESPONSIVENESS
+   ============================================ */
+
+// toggle mobile menu
+function toggleMenu() {
+  const mobileMenu = document.getElementById("nav-links");
+  const hamburger = document.querySelector(".icon");
+
+  mobileMenu.classList.toggle("open");
+  hamburger.classList.toggle("active");
+
+  document.body.classList.toggle("menu-open");
+}
+
+// header mobile menu force close
+function forceCloseMenu() {
+  const mobileMenu = document.getElementById("nav-links");
+  const hamburger = document.querySelector(".icon");
+
+  mobileMenu.classList.remove("open");
+  hamburger.classList.remove("active");
+
+  document.body.classList.remove("menu-open");
+}
+
+// catalog filters & sort toggle
+const filtersTrigger = document.getElementById("filtersTrigger");
+const filtersContainer = document.querySelector(".filters-container");
+const filtersClose = document.getElementById("filtersClose");
+
+if (filtersTrigger && filtersContainer && filtersClose) {
+  filtersTrigger.addEventListener("click", () => {
+    filtersContainer.classList.add("open");
+  });
+
+  filtersClose.addEventListener("click", () => {
+    filtersContainer.classList.remove("open");
+  });
+}
+
+// footer accordion
+document.querySelectorAll(".footer-links > h3").forEach((heading) => {
+  heading.addEventListener("click", () => {
+    heading.parentElement.classList.toggle("active");
+  });
+});

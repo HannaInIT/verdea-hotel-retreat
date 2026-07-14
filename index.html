@@ -38,17 +38,25 @@
 
     <header class="header">
       <div class="wrapper">
-        <nav class="header-nav">
+        <div class="header-nav">
           <a href="/" class="logo">
             <img src="images/logo.svg" alt="Verdea Hotel & Retreat" />
           </a>
 
-          <nav>
-            <label for="nav-home">Homepage</label>
-            <label for="nav-catalog">Catalog</label>
-            <label for="nav-contacts">Contacts</label>
+          <nav id="nav-links">
+            <label for="nav-home" onclick="forceCloseMenu()">Homepage</label>
+            <label for="nav-catalog" onclick="forceCloseMenu()">Catalog</label>
+            <label for="nav-contacts" onclick="forceCloseMenu()"
+              >Contacts</label
+            >
           </nav>
-        </nav>
+          <button class="icon" onclick="toggleMenu()" aria-label="toggle menu">
+            <div class="hamburger">
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -60,7 +68,7 @@
           <div class="hero-cta">
             <h1>Verdea Hotel & Retreat</h1>
             <p>A sustainable escape surrounded by nature</p>
-            <a href="/booking" class="btn">Book your stay</a>
+            <a href="#" class="btn">Book your stay</a>
           </div>
         </div>
 
@@ -87,8 +95,24 @@
         </div>
 
         <div class="catalog-content page-spacing-top">
+          <button class="filters-trigger" id="filtersTrigger">
+            Filters & Sort
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 32 32"
+            >
+              <path d="M0 0h32v32H0z" fill="none" />
+              <path
+                fill="currentColor"
+                d="M12.9 7c-.4-1.7-2-3-3.9-3S5.6 5.3 5.1 7H2v2h3.1c.4 1.7 2 3 3.9 3s3.4-1.3 3.9-3H30V7zM9 10c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2m14 2c-1.9 0-3.4 1.3-3.9 3H2v2h17.1c.4 1.7 2 3 3.9 3s3.4-1.3 3.9-3H30v-2h-3.1c-.4-1.7-2-3-3.9-3m0 6c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2m-9 2c-1.9 0-3.4 1.3-3.9 3H2v2h8.1c.4 1.7 2 3 3.9 3s3.4-1.3 3.9-3H30v-2H17.9c-.4-1.7-2-3-3.9-3m0 6c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2"
+              />
+            </svg>
+          </button>
           <!-- filters  -->
           <div class="filters-container">
+            <button class="filters-close" id="filtersClose">&times;</button>
             <div class="sorting-wrapper page-spacing-bottom">
               <h3>Sort by</h3>
               <svg
@@ -448,11 +472,7 @@
       <!-- CONTACTS  -->
       <section id="page-contacts" class="page">
         <div class="contacts">
-          <img
-            src="images/contact.png"
-            class="contacts-img"
-            alt="contacts-img"
-          />
+          <img src="images/contact.png" class="contacts-img" alt="contact" />
           <div class="contacts-cta">
             <h2>Contact us</h2>
             <p>
@@ -632,32 +652,83 @@
           </div>
 
           <div class="footer-links">
-            <h3>Quick links</h3>
+            <h3>
+              Quick links
+              <svg
+                class="chevron"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 1024 1024"
+              >
+                <path d="M0 0h1024v1024H0z" fill="none" />
+                <path
+                  fill="currentColor"
+                  d="M831.9 340.9L512 652.7L192.1 340.9a30.6 30.6 0 0 0-42.7 0a29 29 0 0 0 0 41.6l340.3 331.7a32 32 0 0 0 44.6 0l340.3-331.7a29 29 0 0 0 0-41.7a30.6 30.6 0 0 0-42.7 0z"
+                />
+              </svg>
+            </h3>
             <div class="links-wrapper">
-              <a href="#">Room booking</a>
-              <a href="#">Rooms</a>
-              <a href="#">Contact</a>
-              <a href="#">Explore</a>
+              <div class="links-inner">
+                <a href="#">Room booking</a>
+                <a href="#">Rooms</a>
+                <a href="#">Contact</a>
+                <a href="#">Explore</a>
+              </div>
             </div>
           </div>
 
           <div class="footer-links">
-            <h3>Company</h3>
+            <h3>
+              Company
+              <svg
+                class="chevron"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 1024 1024"
+              >
+                <path d="M0 0h1024v1024H0z" fill="none" />
+                <path
+                  fill="currentColor"
+                  d="M831.9 340.9L512 652.7L192.1 340.9a30.6 30.6 0 0 0-42.7 0a29 29 0 0 0 0 41.6l340.3 331.7a32 32 0 0 0 44.6 0l340.3-331.7a29 29 0 0 0 0-41.7a30.6 30.6 0 0 0-42.7 0z"
+                />
+              </svg>
+            </h3>
             <div class="links-wrapper">
-              <a href="#">Privacy policy</a>
-              <a href="#">Refund policy</a>
-              <a href="#">F.A.Q.</a>
-              <a href="#">About</a>
+              <div class="links-inner">
+                <a href="#">Privacy policy</a>
+                <a href="#">Refund policy</a>
+                <a href="#">F.A.Q.</a>
+                <a href="#">About</a>
+              </div>
             </div>
           </div>
 
           <div class="footer-links">
-            <h3>Social media</h3>
+            <h3>
+              Social media
+              <svg
+                class="chevron"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 1024 1024"
+              >
+                <path d="M0 0h1024v1024H0z" fill="none" />
+                <path
+                  fill="currentColor"
+                  d="M831.9 340.9L512 652.7L192.1 340.9a30.6 30.6 0 0 0-42.7 0a29 29 0 0 0 0 41.6l340.3 331.7a32 32 0 0 0 44.6 0l340.3-331.7a29 29 0 0 0 0-41.7a30.6 30.6 0 0 0-42.7 0z"
+                />
+              </svg>
+            </h3>
             <div class="links-wrapper">
-              <a href="#">Facebook</a>
-              <a href="#">Twitter</a>
-              <a href="#">Instagram</a>
-              <a href="#">Linkedin</a>
+              <div class="links-inner">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+                <a href="#">Linkedin</a>
+              </div>
             </div>
           </div>
 
