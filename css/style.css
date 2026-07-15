@@ -111,7 +111,7 @@ textarea:not([rows]) {
 
 :root {
   --brown: #7c6a46;
-  --white: #ffff;
+  --white: #ffffff;
   --text-main: #2e2e2e;
   --text-light-grey: #808080;
   --font-family-primary: "Poppins", sans-serif;
@@ -535,7 +535,6 @@ ul.breadcrumb-wrapper li a:hover {
 .catalog-guests-toggle-button {
   display: flex;
   align-items: center;
-  outline: none;
   width: 100%;
   padding: 23px 21px;
   font-family: inherit;
@@ -756,8 +755,6 @@ ul.breadcrumb-wrapper li a:hover {
 
   .catalog-search-bar {
     margin-top: 5px;
-  }
-  .catalog-search-bar {
     flex-direction: column;
   }
 
@@ -950,7 +947,7 @@ ul.breadcrumb-wrapper li a:hover {
 
 .contacts-form-group label {
   font-family: var(--font-family-secondary);
-  font-size: 20x;
+  font-size: 20px;
   font-weight: 400;
   color: var(--label);
 }
@@ -964,7 +961,7 @@ ul.breadcrumb-wrapper li a:hover {
 
 .contacts-form-group input::placeholder {
   font-family: var(--font-family-secondary);
-  font-size: 15x;
+  font-size: 15px;
   font-weight: 400;
   color: var(--text-light-grey);
 }
@@ -1013,7 +1010,7 @@ ul.breadcrumb-wrapper li a:hover {
 
 .contacts-form-textarea::placeholder {
   font-family: var(--font-family-secondary);
-  font-size: 15x;
+  font-size: 15px;
   font-weight: 400;
 }
 
