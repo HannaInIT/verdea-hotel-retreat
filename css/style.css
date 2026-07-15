@@ -223,6 +223,7 @@ footer {
 .logo {
   width: 55px;
   height: auto;
+  cursor: pointer;
 }
 
 #nav-links {
