@@ -60,13 +60,18 @@
           </a>
 
           <nav id="nav-links">
-            <label for="nav-home" onclick="forceCloseMenu()">Homepage</label>
-            <label for="nav-catalog" onclick="forceCloseMenu()">Catalog</label>
-            <label for="nav-contacts" onclick="forceCloseMenu()"
-              >Contacts</label
-            >
+            <label for="nav-home">Homepage</label>
+            <label for="nav-catalog">Catalog</label>
+            <label for="nav-contacts">Contacts</label>
           </nav>
-          <button class="icon" onclick="toggleMenu()" aria-label="toggle menu">
+          <button
+            class="icon"
+            id="menuToggle"
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-controls="nav-links"
+            aria-expanded="false"
+          >
             <div class="hamburger">
               <span></span>
               <span></span>
@@ -187,9 +192,18 @@
                     type="button"
                     class="catalog-guests-toggle-button"
                     id="guestsToggle"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-controls="guestsDropdown"
                   >
                     <span id="guestsSummary">2 adults, 0 children, 1 room</span>
-                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                    <svg
+                      width="12"
+                      height="8"
+                      viewBox="0 0 12 8"
+                      fill="none"
+                      aria-hidden="true"
+                    >
                       <path
                         d="M1 1L6 6L11 1"
                         stroke="currentColor"

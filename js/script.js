@@ -45,15 +45,25 @@ const summary = document.getElementById("guestsSummary");
 if (toggle && dropdown && summary) {
   let counts = { rooms: 1, adults: 2, children: 0 };
 
+  function closeDropdown() {
+    dropdown.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+  }
+
   toggle.addEventListener("click", (e) => {
     e.stopPropagation();
-    dropdown.classList.toggle("open");
+    const isOpen = dropdown.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
   });
 
   document.addEventListener("click", (e) => {
     if (!dropdown.contains(e.target) && e.target !== toggle) {
-      dropdown.classList.remove("open");
+      closeDropdown();
     }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDropdown();
   });
 
   document.querySelectorAll(".catalog-counter-btn").forEach((btn) => {
@@ -79,26 +89,37 @@ if (toggle && dropdown && summary) {
    RESPONSIVENESS
    ============================================ */
 
+const mobileMenu = document.getElementById("nav-links");
+const menuToggle = document.getElementById("menuToggle");
+
 // toggle mobile menu
 function toggleMenu() {
-  const mobileMenu = document.getElementById("nav-links");
-  const hamburger = document.querySelector(".icon");
-
-  mobileMenu.classList.toggle("open");
-  hamburger.classList.toggle("active");
-
-  document.body.classList.toggle("menu-open");
+  const isOpen = mobileMenu.classList.toggle("open");
+  menuToggle.classList.toggle("active", isOpen);
+  document.body.classList.toggle("menu-open", isOpen);
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
 }
 
 // header mobile menu force close
 function forceCloseMenu() {
-  const mobileMenu = document.getElementById("nav-links");
-  const hamburger = document.querySelector(".icon");
-
   mobileMenu.classList.remove("open");
-  hamburger.classList.remove("active");
-
+  menuToggle.classList.remove("active");
   document.body.classList.remove("menu-open");
+  menuToggle.setAttribute("aria-expanded", "false");
+}
+
+if (menuToggle && mobileMenu) {
+  menuToggle.addEventListener("click", toggleMenu);
+
+  // close the menu after selecting a page
+  mobileMenu.querySelectorAll("label").forEach((label) => {
+    label.addEventListener("click", forceCloseMenu);
+  });
+
+  // close the menu with the Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") forceCloseMenu();
+  });
 }
 
 // catalog filters & sort toggle
@@ -113,6 +134,10 @@ if (filtersTrigger && filtersContainer && filtersClose) {
 
   filtersClose.addEventListener("click", () => {
     filtersContainer.classList.remove("open");
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") filtersContainer.classList.remove("open");
   });
 }
 
