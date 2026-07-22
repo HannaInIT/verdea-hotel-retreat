@@ -111,7 +111,7 @@ textarea:not([rows]) {
 
 :root {
   --brown: #7c6a46;
-  --white: #ffff;
+  --white: #ffffff;
   --text-main: #2e2e2e;
   --text-light-grey: #808080;
   --font-family-primary: "Poppins", sans-serif;
@@ -196,12 +196,11 @@ footer {
    ============================================ */
 
 .header {
-  height: 120px;
+  height: 90px;
   padding: 0 24px 0 24px;
   background: var(--white);
   align-items: center;
   display: flex;
-  width: 100%;
 }
 
 .header-nav {
@@ -212,9 +211,24 @@ footer {
   width: 100%;
 }
 
+.logo-wrapper {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
 .logo {
   width: 55px;
   height: auto;
+  cursor: pointer;
+}
+
+.logo-text {
+  color: var(--brown);
+  font-weight: 500;
+  font-size: 18px;
+  font-family: var(--font-family-primary);
 }
 
 #nav-links {
@@ -297,15 +311,20 @@ body.menu-open {
   #nav-contacts:checked ~ header label[for="nav-contacts"] {
     color: var(--text-main);
   }
-  
+
   .header {
-    height: 90px;
-    position: relative;
+    position: sticky;
     z-index: 10;
     padding: 0;
+    top: 0;
+
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
 
-  body.menu-open .header{
+  body.menu-open .header {
     z-index: 2000;
   }
 
@@ -316,6 +335,10 @@ body.menu-open {
   .logo {
     width: 45px;
     height: auto;
+  }
+
+  .logo-text {
+    display: none;
   }
 
   #nav-links {
@@ -402,7 +425,7 @@ body.menu-open {
   margin: 0;
 }
 
-.hero-cta > a {
+.hero-btn {
   padding: 16px 46px;
   background-color: var(--brown);
   border-radius: 5px;
@@ -413,11 +436,14 @@ body.menu-open {
   border-top: 2px solid var(--brown);
   border-left: 2px solid var(--brown);
   transition-duration: 1s;
-  transition-property: all;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
   display: block;
 }
 
-.hero-cta > a:hover {
+.hero-btn:hover {
   cursor: pointer;
   border-top: 2px solid var(--white);
   border-left: 2px solid var(--white);
@@ -439,13 +465,13 @@ body.menu-open {
     font-size: 45px;
   }
 
-  .hero-cta > a {
+  .hero-btn {
     width: 100%;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  .hero-cta > a {
+  .hero-btn {
     width: 50%;
   }
 }
@@ -526,7 +552,6 @@ ul.breadcrumb-wrapper li a:hover {
   border-radius: 5px;
   width: 100%;
   border: 1px solid var(--brown);
-
   position: relative;
   outline: none;
 }
@@ -540,7 +565,6 @@ ul.breadcrumb-wrapper li a:hover {
   padding: 23px 21px;
   font-family: inherit;
   color: var(--text-main);
-  outline: none;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -634,6 +658,22 @@ ul.breadcrumb-wrapper li a:hover {
 }
 
 /* filters  */
+.svg-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.icon-chevron-filters {
+  width: 0.6em;
+  height: 1.2em;
+  transform: rotate(-90deg);
+  color: var(--text-main);
+  overflow: visible;
+  transform-origin: 50% 50%;
+}
+
 .filters-trigger,
 .filters-close {
   display: none;
@@ -667,14 +707,6 @@ ul.breadcrumb-wrapper li a:hover {
   font-family: var(--font-family-secondary);
   font-size: 16px;
   font-weight: 400;
-}
-
-.filters-item svg,
-.sorting-wrapper svg {
-  width: 12px;
-  height: auto;
-  transform: rotate(90deg);
-  color: var(--text-main);
 }
 
 .sorting-wrapper {
@@ -754,14 +786,8 @@ ul.breadcrumb-wrapper li a:hover {
     display: none;
   }
 
-  .catalog-search-bar {
-    margin-top: 5px;
-  }
-  .catalog-search-bar {
-    flex-direction: column;
-  }
-
   .catalog-search-form {
+    margin-top: 5px;
     flex-direction: column;
   }
 
@@ -786,17 +812,18 @@ ul.breadcrumb-wrapper li a:hover {
     gap: 10px;
     width: 50%;
     margin: 0 auto;
-    position: sticky;
-    top: 10px;
+    position: fixed;
+    bottom: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 100;
     background-color: var(--white);
     cursor: pointer;
     border-radius: 100px;
     padding: 23px 21px;
-    border: none;
     outline: none;
     color: var(--brown);
-    border: 1px solid var(--light-orange);
+    border: 1px solid var(--brown);
   }
 
   .filters-trigger svg {
@@ -852,8 +879,11 @@ ul.breadcrumb-wrapper li a:hover {
     grid-template-columns: 200px 1fr;
     gap: 20px;
   }
+
   .catalog-search-form {
     align-items: stretch;
+    margin-top: 5px;
+    flex-direction: column;
   }
 
   .catalog-form-input,
@@ -950,7 +980,7 @@ ul.breadcrumb-wrapper li a:hover {
 
 .contacts-form-group label {
   font-family: var(--font-family-secondary);
-  font-size: 20x;
+  font-size: 20px;
   font-weight: 400;
   color: var(--label);
 }
@@ -964,7 +994,7 @@ ul.breadcrumb-wrapper li a:hover {
 
 .contacts-form-group input::placeholder {
   font-family: var(--font-family-secondary);
-  font-size: 15x;
+  font-size: 15px;
   font-weight: 400;
   color: var(--text-light-grey);
 }
@@ -1013,7 +1043,7 @@ ul.breadcrumb-wrapper li a:hover {
 
 .contacts-form-textarea::placeholder {
   font-family: var(--font-family-secondary);
-  font-size: 15x;
+  font-size: 15px;
   font-weight: 400;
 }
 
@@ -1094,7 +1124,7 @@ ul.breadcrumb-wrapper li a:hover {
   font-family: var(--font-family-cursive);
 }
 
-.chevron {
+.icon-chevron-footer {
   display: none;
 }
 
@@ -1110,7 +1140,14 @@ ul.breadcrumb-wrapper li a:hover {
   min-width: 120px;
 }
 
-.footer-links > h3,
+.footer-heading-button {
+  outline: none;
+  background: transparent;
+  border: none;
+  color: inherit;
+}
+
+.footer-heading-button > span,
 .footer-subscribe > h3 {
   font-weight: 700;
   font-size: 15px;
@@ -1201,29 +1238,31 @@ ul.breadcrumb-wrapper li a:hover {
     gap: 10px;
   }
 
-  .footer-links h3 {
+  .footer-heading-button {
     display: flex;
-    justify-content: space-between;
+    width: 100%;
     align-items: center;
-    margin: 0;
-    padding: 12px 0;
+    justify-content: space-between;
     cursor: pointer;
+    padding: 12px 0;
   }
 
-  .footer-links h3,
+  .icon-chevron-footer {
+    display: block;
+    transition: transform 0.2s ease;
+
+    color: var(--white);
+    width: 20px;
+    transform-origin: 50% 50%;
+    overflow: visible;
+  }
+
+  .footer-heading-button h3,
   .footer-subscribe h3 {
     font-size: 16px;
   }
 
-  .chevron {
-    display: block;
-    transition: transform 0.2s ease;
-    padding-right: 10px;
-    color: var(--white);
-    width: 30px;
-  }
-
-  .footer-links.active .chevron {
+  .footer-links.active .icon-chevron-footer {
     transform: rotate(180deg);
   }
 
