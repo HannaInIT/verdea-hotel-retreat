@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Verdea Hotel & Retreat</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta
+      name="description"
+      content="Verdea Hotel & Retreat is a sustainable eco-hotel surrounded by nature. Browse our rooms, check availability and book a relaxing, environmentally conscious stay."
+    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,27 +27,75 @@
       href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <script src="js/script.js" defer></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
+    <!-- reusable svg icons (defined once, referenced via <use>)  -->
+    <svg class="svg-sprite" aria-hidden="true" focusable="false">
+      <symbol id="icon-chevron-filters" viewBox="0 0 12 24">
+        <path
+          fill="currentColor"
+          fill-rule="evenodd"
+          d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z"
+        />
+      </symbol>
+
+      <symbol id="icon-chevron-footer" viewBox="0 0 1024 1024">
+        <path
+          fill="currentColor"
+          d="M831.9 340.9L512 652.7L192.1 340.9a30.6 30.6 0 0 0-42.7 0a29 29 0 0 0 0 41.6l340.3 331.7a32 32 0 0 0 44.6 0l340.3-331.7a29 29 0 0 0 0-41.7a30.6 30.6 0 0 0-42.7 0z"
+        />
+      </symbol>
+    </svg>
+
+
+
     <input class="nav-state" type="radio" name="nav" id="nav-home" checked />
     <input class="nav-state" type="radio" name="nav" id="nav-catalog" />
     <input class="nav-state" type="radio" name="nav" id="nav-contacts" />
 
     <header class="header">
       <div class="wrapper">
-        <nav class="header-nav">
-          <a href="/" class="logo">
-            <img src="images/logo.svg" alt="Verdea Hotel & Retreat" />
-          </a>
+        <div class="header-nav">
+          <div class="logo-wrapper">
+            <label
+              for="nav-home"
+              class="logo"
+              aria-label="Verdea Hotel & Retreat home"
+            >
+              <img src="images/logo.svg" alt="Verdea Hotel & Retreat logo" />
+            </label>
+            <p class="logo-text">Verdea Co.</p>
+          </div>
 
-          <nav>
+          <nav id="nav-links">
+          
+
             <label for="nav-home">Homepage</label>
             <label for="nav-catalog">Catalog</label>
             <label for="nav-contacts">Contacts</label>
           </nav>
-        </nav>
+        
+          <button
+            class="icon"
+            id="toggleMenuButton"
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-controls="nav-links"
+            aria-expanded="false"
+          >
+            <div class="hamburger" aria-hidden="true">
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -52,11 +103,15 @@
       <!-- HOME  -->
       <section id="page-home" class="page hero">
         <div class="page-spacing-bottom">
-          <img src="images/hero.png" class="hero-img" alt="hero" />
+          <img
+            src="images/hero.png"
+            class="hero-img"
+            alt="Verdea Hotel & Retreat surrounded by green nature."
+          />
           <div class="hero-cta">
             <h1>Verdea Hotel & Retreat</h1>
             <p>A sustainable escape surrounded by nature</p>
-            <a href="/booking" class="btn">Book your stay</a>
+            <a href="#" class="hero-btn">Book your stay</a>
           </div>
         </div>
 
@@ -73,7 +128,10 @@
       </section>
 
       <!-- CATALOG  -->
-      <section id="page-catalog" class="page wrapper page-spacing-bottom">
+      <section
+        id="page-catalog"
+        class="page wrapper page-spacing-bottom page-spacing-top"
+      >
         <h1 class="section-title">Catalog</h1>
         <div class="breadcrumb-container">
           <ul class="breadcrumb-wrapper">
@@ -82,248 +140,292 @@
           </ul>
         </div>
 
-        <div class="sorting page-spacing-top">
-          <div class="sorting-wrapper">
-            <h3>Sort by</h3>
+        <div class="catalog-content page-spacing-top">
+          <button class="filters-trigger" id="filtersTrigger" type="button" aria-controls="filtersContainer" aria-expanded="false">
+            Filters & Sort
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="0.5em"
+              width="1em"
               height="1em"
-              viewBox="0 0 12 24"
+              viewBox="0 0 32 32"
+              aria-hidden="true"
+              focusable="false"
             >
-              <path d="M0 0h12v24H0z" fill="none" />
-              <defs>
-                <path
-                  id="SVG1pzpbdYY"
-                  fill="currentColor"
-                  d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z"
-                />
-              </defs>
-              <use
-                fill-rule="evenodd"
-                href="#SVG1pzpbdYY"
-                transform="rotate(-180 5.02 9.505)"
+              <path d="M0 0h32v32H0z" fill="none" />
+              <path
+                fill="currentColor"
+                d="M12.9 7c-.4-1.7-2-3-3.9-3S5.6 5.3 5.1 7H2v2h3.1c.4 1.7 2 3 3.9 3s3.4-1.3 3.9-3H30V7zM9 10c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2m14 2c-1.9 0-3.4 1.3-3.9 3H2v2h17.1c.4 1.7 2 3 3.9 3s3.4-1.3 3.9-3H30v-2h-3.1c-.4-1.7-2-3-3.9-3m0 6c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2m-9 2c-1.9 0-3.4 1.3-3.9 3H2v2h8.1c.4 1.7 2 3 3.9 3s3.4-1.3 3.9-3H30v-2H17.9c-.4-1.7-2-3-3.9-3m0 6c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2"
               />
             </svg>
-          </div>
-        </div>
-
-        <div class="catalog-content">
+          </button>
           <!-- filters  -->
-          <div class="filters-container">
+          <div class="filters-container" id="filtersContainer">
+            <button class="filters-close" id="filtersClose" aria-label="Close filters">&times;</button>
+            <div class="sorting-wrapper page-spacing-bottom">
+              <h3>Sort by</h3>
+
+              <svg class="icon-chevron-filters" viewBox="0 0 12 24" aria-hidden="true" focusable="false">
+                <use href="#icon-chevron-filters" />
+              </svg>
+            </div>
+
             <h2>Filters</h2>
             <div class="filters-wrapper">
               <div class="filters-item">
                 <h3>Price per night</h3>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="0.5em"
-                  height="1em"
-                  viewBox="0 0 12 24"
-                >
-                  <path d="M0 0h12v24H0z" fill="none" />
-                  <defs>
-                    <path
-                      id="SVG1pzpbdYY"
-                      fill="currentColor"
-                      d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z"
-                    />
-                  </defs>
-                  <use
-                    fill-rule="evenodd"
-                    href="#SVG1pzpbdYY"
-                    transform="rotate(-180 5.02 9.505)"
-                  />
+
+                <svg class="icon-chevron-filters" viewBox="0 0 12 24" aria-hidden="true" focusable="false">
+                  <use href="#icon-chevron-filters" />
                 </svg>
               </div>
               <div class="filters-item">
                 <h3>Guests</h3>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="0.5em"
-                  height="1em"
-                  viewBox="0 0 12 24"
-                >
-                  <path d="M0 0h12v24H0z" fill="none" />
-                  <defs>
-                    <path
-                      id="SVG1pzpbdYY"
-                      fill="currentColor"
-                      d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z"
-                    />
-                  </defs>
-                  <use
-                    fill-rule="evenodd"
-                    href="#SVG1pzpbdYY"
-                    transform="rotate(-180 5.02 9.505)"
-                  />
+
+                <svg class="icon-chevron-filters" viewBox="0 0 12 24" aria-hidden="true" focusable="false">
+                  <use href="#icon-chevron-filters" />
                 </svg>
               </div>
               <div class="filters-item">
-                <h3>Bad type</h3>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="0.5em"
-                  height="1em"
-                  viewBox="0 0 12 24"
-                >
-                  <path d="M0 0h12v24H0z" fill="none" />
-                  <defs>
-                    <path
-                      id="SVG1pzpbdYY"
-                      fill="currentColor"
-                      d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z"
-                    />
-                  </defs>
-                  <use
-                    fill-rule="evenodd"
-                    href="#SVG1pzpbdYY"
-                    transform="rotate(-180 5.02 9.505)"
-                  />
+                <h3>Bed type</h3>
+
+                <svg class="icon-chevron-filters" viewBox="0 0 12 24" aria-hidden="true" focusable="false">
+                  <use href="#icon-chevron-filters" />
                 </svg>
               </div>
               <div class="filters-item">
                 <h3>Eco features</h3>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="0.5em"
-                  height="1em"
-                  viewBox="0 0 12 24"
-                >
-                  <path d="M0 0h12v24H0z" fill="none" />
-                  <defs>
-                    <path
-                      id="SVG1pzpbdYY"
-                      fill="currentColor"
-                      d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z"
-                    />
-                  </defs>
-                  <use
-                    fill-rule="evenodd"
-                    href="#SVG1pzpbdYY"
-                    transform="rotate(-180 5.02 9.505)"
-                  />
+
+                <svg class="icon-chevron-filters" viewBox="0 0 12 24" aria-hidden="true" focusable="false">
+                  <use href="#icon-chevron-filters" />
                 </svg>
               </div>
               <div class="filters-item">
                 <h3>Amenities</h3>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="0.5em"
-                  height="1em"
-                  viewBox="0 0 12 24"
-                >
-                  <path d="M0 0h12v24H0z" fill="none" />
-                  <defs>
-                    <path
-                      id="SVG1pzpbdYY"
-                      fill="currentColor"
-                      d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z"
-                    />
-                  </defs>
-                  <use
-                    fill-rule="evenodd"
-                    href="#SVG1pzpbdYY"
-                    transform="rotate(-180 5.02 9.505)"
-                  />
+
+                <svg class="icon-chevron-filters" viewBox="0 0 12 24" aria-hidden="true" focusable="false">
+                  <use href="#icon-chevron-filters" />
                 </svg>
               </div>
               <div class="filters-item">
                 <h3>View</h3>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="0.5em"
-                  height="1em"
-                  viewBox="0 0 12 24"
-                >
-                  <path d="M0 0h12v24H0z" fill="none" />
-                  <defs>
-                    <path
-                      id="SVG1pzpbdYY"
-                      fill="currentColor"
-                      d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z"
-                    />
-                  </defs>
-                  <use
-                    fill-rule="evenodd"
-                    href="#SVG1pzpbdYY"
-                    transform="rotate(-180 5.02 9.505)"
-                  />
+
+                <svg class="icon-chevron-filters" viewBox="0 0 12 24" aria-hidden="true" focusable="false">
+                  <use href="#icon-chevron-filters" />
                 </svg>
               </div>
             </div>
           </div>
 
-          <!-- catalog grid  -->
-          <div class="catalog-grid">
-            <div class="catalog-card">
-              <img src="images/1.jpg" alt="room" />
-              <div class="catalog-card-inner">
-                <div class="catalog-card-info">
-                  <h3>The royal room</h3>
-                  <p>Available: Yes</p>
+          <!-- search bar  -->
+          <div class="catalog-main">
+            <div class="catalog-search-bar">
+              <form action="#" class="catalog-search-form">
+                <div class="catalog-form-group">
+                  <input
+                    id="dateRange"
+                    type="text"
+                    placeholder="Check-in date - Check-out date"
+                    readonly
+                    autocomplete="off"
+                    class="catalog-form-input"
+                  />
                 </div>
-                <p>€190</p>
-                <button>Book now</button>
-              </div>
-            </div>
-            <div class="catalog-card">
-              <img src="images/2.jpg" alt="room" />
-              <div class="catalog-card-inner">
-                <div class="catalog-card-info">
-                  <h3>The royal room</h3>
-                  <p>Available: Yes</p>
+
+                <div class="catalog-form-group">
+                  <button
+                    type="button"
+                    class="catalog-guests-toggle-button"
+                    id="guestsToggle"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    aria-controls="guestsDropdown"
+                  >
+                    <span id="guestsSummary">2 adults, 0 children, 1 room</span>
+                    <svg
+                      width="12"
+                      height="8"
+                      viewBox="0 0 12 8"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M1 1L6 6L11 1"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </button>
+
+                  <div class="catalog-guests-dropdown" id="guestsDropdown">
+                    <div class="catalog-guests-header">
+                      <span>Rooms</span>
+                      <div class="catalog-counter">
+                        <button
+                          type="button"
+                          class="catalog-counter-btn minus"
+                          data-target="rooms"
+                        >
+                          -
+                        </button>
+                        <span class="catalog-counter-value" id="roomsValue"
+                          >1</span
+                        >
+
+                        <button
+                          type="button"
+                          class="catalog-counter-btn plus"
+                          data-target="rooms"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="catalog-guests-room-block">
+                      <div class="catalog-counter-row">
+                        <span>Adults</span>
+
+                        <div class="catalog-counter">
+                          <button
+                            type="button"
+                            class="catalog-counter-btn minus"
+                            data-target="adults"
+                          >
+                            -
+                          </button>
+                          <span class="catalog-counter-value" id="adultsValue"
+                            >2</span
+                          >
+                          <button
+                            type="button"
+                            class="catalog-counter-btn plus"
+                            data-target="adults"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="catalog-counter-row">
+                        <span>Children</span>
+                        <div class="catalog-counter">
+                          <button
+                            type="button"
+                            class="catalog-counter-btn minus"
+                            data-target="children"
+                          >
+                            -
+                          </button>
+                          <span class="catalog-counter-value" id="childrenValue"
+                            >0</span
+                          >
+                          <button
+                            type="button"
+                            class="catalog-counter-btn plus"
+                            data-target="children"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <p>€190</p>
-                <button>Book now</button>
-              </div>
+
+                <button class="catalog-search-btn">Search</button>
+              </form>
             </div>
 
-            <div class="catalog-card">
-              <img src="images/3.jpg" alt="room" />
-              <div class="catalog-card-inner">
-                <div class="catalog-card-info">
-                  <h3>The royal room</h3>
-                  <p>Available: Yes</p>
+            <!-- catalog grid  -->
+            <div class="catalog-grid">
+              <div class="catalog-card">
+                <img
+                  src="images/verdea-standard-room-01.jpg"
+                  alt="Royal room"
+                />
+                <div class="catalog-card-inner">
+                  <div class="catalog-card-info">
+                    <h3>The royal room</h3>
+                    <p>Available: Yes</p>
+                  </div>
+                  <p>€190</p>
+                  <button>Book now</button>
                 </div>
-                <p>€190</p>
-                <button>Book now</button>
               </div>
-            </div>
-
-            <div class="catalog-card">
-              <img src="images/4.jpg" alt="room" />
-              <div class="catalog-card-inner">
-                <div class="catalog-card-info">
-                  <h3>The royal room</h3>
-                  <p>Available: Yes</p>
+              <div class="catalog-card">
+                <img
+                  src="images/verdea-standard-room-02.jpg"
+                  alt="Royal room"
+                />
+                <div class="catalog-card-inner">
+                  <div class="catalog-card-info">
+                    <h3>The royal room</h3>
+                    <p>Available: Yes</p>
+                  </div>
+                  <p>€190</p>
+                  <button>Book now</button>
                 </div>
-                <p>€190</p>
-                <button>Book now</button>
               </div>
-            </div>
 
-            <div class="catalog-card">
-              <img src="images/5.jpg" alt="room" />
-              <div class="catalog-card-inner">
-                <div class="catalog-card-info">
-                  <h3>The royal room</h3>
-                  <p>Available: Yes</p>
+              <div class="catalog-card">
+                <img
+                  src="images/verdea-standard-room-03.jpg"
+                  alt="Royal room"
+                />
+                <div class="catalog-card-inner">
+                  <div class="catalog-card-info">
+                    <h3>The royal room</h3>
+                    <p>Available: Yes</p>
+                  </div>
+                  <p>€190</p>
+                  <button>Book now</button>
                 </div>
-                <p>€190</p>
-                <button>Book now</button>
               </div>
-            </div>
 
-            <div class="catalog-card">
-              <img src="images/6.jpg" alt="room" />
-              <div class="catalog-card-inner">
-                <div class="catalog-card-info">
-                  <h3>The royal room</h3>
-                  <p>Available: Yes</p>
+              <div class="catalog-card">
+                <img
+                  src="images/verdea-standard-room-04.jpg"
+                  alt="Royal room"
+                />
+                <div class="catalog-card-inner">
+                  <div class="catalog-card-info">
+                    <h3>The royal room</h3>
+                    <p>Available: Yes</p>
+                  </div>
+                  <p>€190</p>
+                  <button>Book now</button>
                 </div>
-                <p>€190</p>
-                <button>Book now</button>
+              </div>
+
+              <div class="catalog-card">
+                <img
+                  src="images/verdea-standard-room-05.jpg"
+                  alt="Royal room"
+                />
+                <div class="catalog-card-inner">
+                  <div class="catalog-card-info">
+                    <h3>The royal room</h3>
+                    <p>Available: Yes</p>
+                  </div>
+                  <p>€190</p>
+                  <button>Book now</button>
+                </div>
+              </div>
+
+              <div class="catalog-card">
+                <img
+                  src="images/verdea-standard-room-06.jpg"
+                  alt="Royal room"
+                />
+                <div class="catalog-card-inner">
+                  <div class="catalog-card-info">
+                    <h3>The royal room</h3>
+                    <p>Available: Yes</p>
+                  </div>
+                  <p>€190</p>
+                  <button>Book now</button>
+                </div>
               </div>
             </div>
           </div>
@@ -333,12 +435,16 @@
       <!-- CONTACTS  -->
       <section id="page-contacts" class="page">
         <div class="contacts">
-          <img src="images/contact.png" class="contacts-img" alt="hero" />
+          <img
+            src="images/contact.png"
+            class="contacts-img"
+            alt="Contact Verdea Hotel & Retreat"
+          />
           <div class="contacts-cta">
             <h2>Contact us</h2>
             <p>
-              At Verdea Hotel & Retreat, we take our customers seriously. Do you
-              have any enquiries, compaints or requests, please forward it to
+              At Verdea Hotel & Retreat, we take our customers seriously. If you
+              have any enquiries, complaints or requests, please forward them to
               our support desk and we will get back to you as soon as possible.
             </p>
           </div>
@@ -347,13 +453,17 @@
         <div class="contacts-info wrapper page-spacing-top">
           <p>Tom Schreursweg 40, 1067 MC Amsterdam</p>
 
-          <a href="#" class="view-map"
+          <a
+            href="https://www.google.com/maps?ll=52.381719,4.778921&z=16&t=m&hl=en&gl=NL&mapclient=embed&cid=7062355396805945764"
+            class="view-map"
+            target="_blank"
             >View map
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1em"
               height="1em"
               viewBox="0 0 24 24"
+              aria-hidden="true" focusable="false"
             >
               <path d="M0 0h24v24H0z" fill="none" />
               <path
@@ -365,26 +475,32 @@
             </svg>
           </a>
 
-          <p class="contact-line">Phone: <a href="#">0202447336</a></p>
-          <p class="contact-line">Email: <a href="#"> info@verdea.nl</a></p>
+          <p class="contacts-line">
+            Reception phone number: <a href="#">0202447336</a>
+          </p>
+          <p class="contacts-line">Email: <a href="#"> info@verdea.nl</a></p>
         </div>
 
-        <div class="form-content wrapper page-spacing-top">
+        <div class="contacts-form-content wrapper page-spacing-top">
           <form action="#" method="post" autocomplete="on">
-            <div class="form-input-wrapper">
-              <div class="form-group">
-                <label for="username">Full name</label>
+            <div class="contacts-form-input-wrapper">
+              <div class="contacts-form-group">
+                <label for="username"
+                  >Full name <span class="required">*</span></label
+                >
                 <input
                   type="text"
                   id="username"
                   name="username"
                   required
                   placeholder="e.g John Becker"
-                  autocomplete="username"
+                  autocomplete="name"
                 />
               </div>
-              <div class="form-group">
-                <label for="user-email">Email</label>
+              <div class="contacts-form-group">
+                <label for="user-email"
+                  >Email <span class="required">*</span></label
+                >
                 <input
                   type="email"
                   id="user-email"
@@ -392,21 +508,84 @@
                   required
                   placeholder="johnbecker@gmail.com"
                   autocomplete="email"
+                  required
                 />
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="message">Message</label>
+            <div class="contacts-form-input-wrapper">
+              <div class="contacts-form-group">
+                <label for="phone">Phone number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="+31612345678"
+                  autocomplete="tel"
+                  class="contacts-phone-input"
+                />
+              </div>
+
+              <div class="contacts-form-group">
+                <label for="reason"
+                  >How we can help you? <span class="required">*</span></label
+                >
+                <div class="contacts-select-wrapper">
+                  <select
+                    id="reason"
+                    name="reason"
+                    class="select-reason"
+                    required
+                  >
+                    <option value="" disabled selected>Select a reason</option>
+                    <option value="booking">
+                      New reservation / Booking question
+                    </option>
+                    <option value="modify">
+                      Modify or cancel a reservation
+                    </option>
+                    <option value="refund">Refund or payment issue</option>
+                    <option value="stay">
+                      Question about my upcoming stay
+                    </option>
+                    <option value="feedback">Feedback or complaint</option>
+                    <option value="group">Group or event booking</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <svg
+                    class="contacts-select-arrow"
+                    width="12"
+                    height="8"
+                    viewBox="0 0 12 8"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true" focusable="false"
+                  >
+                    <path
+                      d="M1 1L6 6L11 1"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="contacts-form-group">
+              <label for="message"
+                >Message <span class="required">*</span></label
+              >
               <textarea
                 name="message"
                 id="message"
-                class="form-textarea"
+                class="contacts-form-textarea"
                 rows="4"
-                placeholder="message"
+                placeholder="Type your message here..."
+                required
               ></textarea>
             </div>
-            <button type="submit" class="form-button">Submit</button>
+            <button type="submit" class="contacts-form-button">Submit</button>
           </form>
         </div>
 
@@ -440,32 +619,56 @@
           </div>
 
           <div class="footer-links">
-            <h3>Quick links</h3>
+            <button class="footer-heading-button" aria-expanded="false" aria-controls="quickLinks">
+              <span>Quick links</span>
+              <svg class="icon-chevron-footer" viewBox="0 0 1024 1024" aria-hidden="true" focusable="false">
+                <use href="#icon-chevron-footer" />
+              </svg>
+            </button>
+
             <div class="links-wrapper">
-              <a href="#">Room booking</a>
-              <a href="#">Rooms</a>
-              <a href="#">Contact</a>
-              <a href="#">Explore</a>
+              <nav class="links-inner" id="quickLinks" aria-label="Quick links">
+                <a href="#">Room booking</a>
+                <a href="#">Rooms</a>
+                <a href="#">Contact</a>
+                <a href="#">Explore</a>
+              </nav>
             </div>
           </div>
 
           <div class="footer-links">
-            <h3>Company</h3>
-            <div class="links-wrapper">
-              <a href="#">Privacy policy</a>
-              <a href="#">Refund policy</a>
-              <a href="#">F.A.Q.</a>
-              <a href="#">About</a>
+            <button class="footer-heading-button" aria-expanded="false" aria-controls="companyLinks">
+              <span>Company</span>
+              <svg class="icon-chevron-footer" viewBox="0 0 1024 1024" aria-hidden="true" focusable="false">
+                <use href="#icon-chevron-footer" />
+              </svg>
+            </button>
+
+            <div class="links-wrapper" >
+              <nav class="links-inner" id="companyLinks" aria-label="Company links">
+                <a href="#">Privacy policy</a>
+                <a href="#">Refund policy</a>
+                <a href="#">F.A.Q.</a>
+                <a href="#">About</a>
+              </nav>
             </div>
           </div>
 
           <div class="footer-links">
-            <h3>Social media</h3>
+            <button class="footer-heading-button"  aria-expanded="false" aria-controls="socialLinks">
+              <span>Social media</span>
+              <svg class="icon-chevron-footer" viewBox="0 0 1024 1024" aria-hidden="true" focusable="false">
+                <use href="#icon-chevron-footer" />
+              </svg>
+            </button>
+
             <div class="links-wrapper">
-              <a href="#">Facebook</a>
-              <a href="#">Twitter</a>
-              <a href="#">Instagram</a>
-              <a href="#">Linkedin</a>
+              <nav class="links-inner" id="socialLinks" aria-label="Social links ">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+                <a href="#">Linkedin</a>
+              </nav>
             </div>
           </div>
 
@@ -485,6 +688,7 @@
                   name="email"
                   required
                   placeholder="Enter your email"
+                  aria-label="Email address"
                   autocomplete="email"
                 />
                 <button type="submit">Subscribe</button>
@@ -500,5 +704,8 @@
         </p>
       </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
+    <script src="js/script.js" defer></script>
   </body>
 </html>
