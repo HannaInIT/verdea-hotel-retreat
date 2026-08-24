@@ -4,34 +4,93 @@ Responsive multi-page eco-hotel catalog website built with HTML5, CSS3, JavaScri
 
 ## Project Overview
 
-Verdea Hotel & Retreat is an adaptive multi-page catalog site for an eco-hotel. The project is focused on a clean semantic structure, modern responsive layout techniques, and maintainable styling architecture.
+Verdea Hotel & Retreat is an adaptive multi-page catalog site for an eco-hotel. The project focuses on semantic HTML, a modern responsive layout, and maintainable CSS architecture.
 
-The current implementation also includes an interactive booking experience in the catalog:
+The current implementation includes an interactive booking experience in the catalog:
 
-- A Flatpickr-powered date picker loaded from a CDN.
-- Range selection for check-in and check-out dates, with the selected span rendered in the input.
-- Guest and room counters for adults, children, and rooms.
-- A live guest summary that updates as the counters change.
+- Flatpickr-powered date picker (CDN)
+- Range selection for check-in / check-out with rendered input span
+- Guest and room counters (adults, children, rooms)
+- Live guest summary that updates as counters change
+
+## Preview
+
+Screenshots are included in the repo (no live demo available):
+
+![](images/screenshot-01.png)
+![](images/screenshot-02.png)
 
 ## Tech Stack
 
 - HTML5
-- CSS3
+- CSS3 (responsive)
 - JavaScript
-- Flatpickr via CDN
-- Figma for design reference
+- Flatpickr (CDN)
+- Figma (design reference)
 
 ## Pages
 
-The site includes 3 pages:
-
 - Home
-- Catalog
-- Contacts with feedback form
+- Catalog (with booking widget)
+- Contacts (feedback form)
+
+## Getting Started
+
+These instructions show how to open the project locally for development or review.
+
+1. Clone the repo (if needed):
+
+```bash
+git clone https://github.com/HannaInIT/verdea-hotel-retreat.git
+cd verdea-hotel-retreat
+```
+
+2. Quick view (open in browser):
+
+```bash
+open index.html
+```
+
+3. Or run a simple static server (recommended to avoid CORS issues):
+
+```bash
+python3 -m http.server 8000
+# then open http://localhost:8000
+
+# or, if you have Node.js installed:
+npx serve .
+```
+
+## Usage
+
+- Edit page content: HTML files at the repo root.
+- Styles: `css/style.css` — update variables and layout there.
+- Scripts: `js/script.js` — booking widget logic and DOM interactions.
+- Images: `images/` — replace screenshots or assets.
+
+## Development
+
+- Recommended: VS Code, Live Server extension for fast reloads.
+- Linting/formatting: use your preferred HTML/CSS/JS linters (not included).
+- To test booking widget behavior, open the Catalog page and interact with the date picker and counters.
+
+## Folder Structure
+
+- `index.html` — Home
+- `catalog.html` — Catalog with booking widget
+- `contacts.html` — Contact/feedback form
+- `css/` — styles (style.css)
+- `js/` — JavaScript (script.js)
+- `images/` — screenshots and assets
 
 ## Functional Requirements
 
-- Build a responsive multi-page eco-hotel catalog website.
-- Implement full responsiveness for 2 breakpoints: Mobile and Desktop.
-- Validate the form using HTML5 fields for name, phone, check-in date, and check-out date.
-- Provide an interactive booking widget with a date-range picker and guest/room selectors.
+- Responsive multi-page eco-hotel catalog website
+- Two main breakpoints: Mobile and Desktop
+- HTML5 form validation for name, phone, check-in and check-out
+- Interactive booking widget with date-range picker and guest/room selectors
+
+## Known Issues
+
+- No live demo link available (local preview only).
+- If Flatpickr CDN is unavailable, the date picker will not initialize — consider adding a local fallback.
